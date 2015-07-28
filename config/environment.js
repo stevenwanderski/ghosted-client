@@ -16,6 +16,19 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    'simple-auth': {
+      routeAfterAuthentication: 'repos-list'
+    },
+
+    torii: {
+      providers: {
+        'github-oauth2': {
+          apiKey: 'e7efb6c8bc9dd05dcf70',
+          redirectUrl: '/repos'
+        }
+      }
     }
   };
 

@@ -1,0 +1,32 @@
+body {
+  font-family: "Monaco";
+}
+
+.container {
+  max-width: 100%;
+}
+
+.issue {
+  border: solid #eee 1px;
+  padding: 20px;
+  background: #fff;
+}
+
+.handle {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.sortable-ghost {
+  opacity: 1;
+}
+
+header {
+  padding: 20px 0;
+  margin-bottom: 20px;
+  border-bottom: solid #eee 1px;
+
+  .title {
+    font-size: 20px;
+  }
+}

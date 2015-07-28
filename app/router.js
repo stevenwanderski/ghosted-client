@@ -6,6 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('home', { path: '/' });
+  this.route('repos-list', { path: 'repos' }, function(){
+    this.route('repos-show', { path: ':id' });
+  });
 });
 
 export default Router;
