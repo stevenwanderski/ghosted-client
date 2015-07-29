@@ -19,7 +19,9 @@ module.exports = function(environment) {
     },
 
     'simple-auth': {
-      routeAfterAuthentication: 'repos-list'
+      routeAfterAuthentication: 'repos-list',
+      authorizer: 'authorizer:github-oauth2',
+      crossOriginWhitelist: ['https://api.github.com']
     },
 
     torii: {
