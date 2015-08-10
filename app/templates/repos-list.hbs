@@ -1,15 +1,5 @@
-<div class="row">
-
-  <div class="three columns">
-    <ul>
-    {{#each model as |repo|}}
-      <li>{{#link-to 'repos-list.repos-show' repo.id}}{{repo.name}}{{/link-to}}</li>
-    {{/each}}
-    </ul>
-  </div>
-
-  <div class="nine columns">
-    {{outlet}}
-  </div>
-
-</div>
+<ul>
+{{#each model as |repo|}}
+  <li>{{#link-to 'repo-show' repo.name}}{{repo.name}}{{/link-to}}</li>
+{{/each}}
+</ul>

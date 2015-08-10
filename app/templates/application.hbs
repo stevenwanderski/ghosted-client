@@ -1,8 +1,11 @@
 <div class="container">
   <header>
-    <div class="title">Github Issues</div>
     {{#if session.isAuthenticated}}
-      <a href="" {{ action 'invalidateSession' }}>Logout</a>
+      <img src={{session.secure.avatar_url}} class="avatar" /> <span class="username">{{session.secure.username}}</span>
+      {{#link-to 'repos-list'}}repos{{/link-to}}
+      <a href="" {{ action 'invalidateSession' }}>logout</a>
+    {{else}}
+      <div class="title">Github Issues</div>
     {{/if}}
   </header>
   {{outlet}}

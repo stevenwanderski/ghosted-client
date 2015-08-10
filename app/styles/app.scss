@@ -29,4 +29,11 @@ header {
   .title {
     font-size: 20px;
   }
+
+  .avatar {
+    max-width: 75px;
+    border-radius: 75px;
+    vertical-align: middle;
+    border: solid 5px #eee;
+  }
 }

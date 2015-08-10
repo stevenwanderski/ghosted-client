@@ -13,7 +13,7 @@ App = Ember.Application.extend({
   Resolver: Resolver
 });
 
-Ember.deprecate = function(){}
+Ember.deprecate = function(){};
 console.info('%!%! REMEMBER TO RE-ENABLE DEPRECATIONS!!');
 
 loadInitializers(App, config.modulePrefix);

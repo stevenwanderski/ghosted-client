@@ -28,7 +28,8 @@ module.exports = function(environment) {
       providers: {
         'github-oauth2': {
           apiKey: 'e7efb6c8bc9dd05dcf70',
-          redirectUrl: '/repos'
+          redirectUrl: '/repos',
+          scope: 'public_repo'
         }
       }
     }

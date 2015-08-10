@@ -4,11 +4,22 @@ export default DS.RESTAdapter.extend({
   host: 'https://api.github.com',
 
   urlForQuery (query, modelName) {
-    return `${this.host}/repos/[username]/${query.repo_name}/issues?state=all`;
+    let session = this.container.lookup('simple-auth-session:main');
+    if(query.repoName && query.milestoneNumber){
+      return `${this.host}/repos/${session.get('secure.username')}/${query.repoName}/issues?milestone=${query.milestoneNumber}`;
+    } else if (query.repoName) {
+      return `${this.host}/repos/${session.get('secure.username')}/${query.repoName}/issues?state=all`;
+    }
   },
 
   urlForUpdateRecord (id, modelName, snapshot) {
-    return `${this.host}/repos/[username]/${snapshot.get('repo').get('name')}/issues/${snapshot.get('number')}`;
+    let session = this.container.lookup('simple-auth-session:main');
+    return `${this.host}/repos/${session.get('secure.username')}/${snapshot.get('repo.name')}/issues/${snapshot.get('number')}`;
+  },
+
+  urlForCreateRecord (modelName, snapshot) {
+    let session = this.container.lookup('simple-auth-session:main');
+    return `${this.host}/repos/${session.get('secure.username')}/${snapshot.get('repo.name')}/issues`;
   },
 
   updateRecord (store, type, snapshot) {
