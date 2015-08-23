@@ -1,3 +1,5 @@
+$green: #4cc14c;
+
 body {
   font-family: "Monaco";
 }
@@ -8,17 +10,51 @@ body {
 
 .issue {
   border: solid #eee 1px;
-  padding: 20px;
+  padding: 10px;
   background: #fff;
+  position: relative;
+
+  &:hover {
+    .issue-close {
+      visibility: visible;
+      text-decoration: none;
+      color: $green;
+    }
+  }
+}
+
+.issue-number {
+  color: #ccc;
+}
+
+.issue-close {
+  color: $green;
+  font-size: 20px;
+  display: inline-flex;
+  visibility: hidden;
 }
 
 .handle {
   cursor: -webkit-grab;
   cursor: grab;
+  display: none;
 }
 
 .sortable-ghost {
   opacity: 1;
+}
+
+.repo-card {
+  border: solid 1px #f5f5f5;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 14px;
+  display: block;
+  overflow-x: scroll;
+
+  .repo-name {
+    font-size: 16px;
+  }
 }
 
 header {

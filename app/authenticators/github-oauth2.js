@@ -16,27 +16,17 @@ export default Base.extend({
   fetchGithubOauthData () {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let torii = this.container.lookup('torii:main');
-      torii.open('github-oauth2')
-      .then(function(authorization){
-        resolve(authorization);
-      })
-      .catch(function(errors){
-        reject(errors);
-      });
+      return torii.open('github-oauth2').then(resolve, reject);
     }.bind(this));
   },
 
   fetchGithubAccessToken (authorization) {
-    return new Ember.RSVP.Promise(function(resolve, reject) {
-      ajax({
-        url: 'http://localhost:3000/v1/token',
-        type: 'POST',
-        data: { authorization_code: authorization.authorizationCode }
-      }).then(function(response){
-        resolve(response);
-      }, function(errors){
-        reject(errors);
-      });
+    return ajax({
+      url: 'http://localhost:3000/v1/tokens',
+      type: 'POST',
+      data: {
+        code: authorization.authorizationCode
+      }
     });
   }
 });

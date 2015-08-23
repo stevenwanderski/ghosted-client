@@ -1,11 +1,9 @@
-import Ember from 'ember';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import ProtectedRoute from '../../protected';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default ProtectedRoute.extend({
   model(params) {
-    let repo = this.modelFor('repo-show');
     let milestone = this.modelFor('repo-show.milestone-show')
-    return this.store.createRecord('issue', { repo: repo, milestone: milestone });
+    return this.store.createRecord('issue', { milestone_id: milestone.get('id') });
   },
 
   actions: {
@@ -14,7 +12,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       issue.save().then(function(){
         route.transitionTo('repo-show.milestone-show.milestone-issues');
       }, function(errors){
-        console.log(errors);
+        console.error(errors);
       });
     },
 

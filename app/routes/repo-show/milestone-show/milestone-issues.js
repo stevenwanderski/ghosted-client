@@ -1,10 +1,26 @@
-import Ember from 'ember';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import ProtectedRoute from '../../protected';
+import ajax from 'ic-ajax';
+import ENV from 'github-issues/config/environment';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  model(params) {
-    let repo = this.modelFor('repo-show');
+export default ProtectedRoute.extend({
+  model (params) {
     let milestone = this.modelFor('repo-show.milestone-show')
-    return this.store.query('issue', { repoName: repo.get('name'), milestoneNumber: milestone.get('number') });
+    return this.store.find('issue', { milestone_id: milestone.get('id') });
+  },
+
+  actions: {
+    saveWeights (weights) {
+      ajax({
+        url: `${ENV.apiHost}/v1/issues/weights`,
+        method: 'PUT',
+        data: { weights: weights }
+      })
+      .then(() => {
+        this.flashMessages.success('Saved 😁');
+      })
+      .catch((errors) => {
+        this.flashMessages.danger('Failed 😞');
+      });
+    }
   }
 });

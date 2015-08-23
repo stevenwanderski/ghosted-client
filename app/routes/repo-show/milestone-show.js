@@ -1,9 +1,8 @@
-import Ember from 'ember';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import ProtectedRoute from '../protected';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default ProtectedRoute.extend({
   model(params) {
     let repo = this.modelFor('repo-show');
-    return this.store.queryRecord('milestone', { repoName: repo.get('name'), number: params.number });
+    return this.store.find('milestone', params.milestoneId);
   }
 });

@@ -19,9 +19,9 @@ module.exports = function(environment) {
     },
 
     'simple-auth': {
-      routeAfterAuthentication: 'repos-list',
-      authorizer: 'authorizer:github-oauth2',
-      crossOriginWhitelist: ['https://api.github.com']
+      routeAfterAuthentication: 'repos-favorites',
+      authorizer: 'authorizer:github-issues-api',
+      crossOriginWhitelist: ['http://localhost:3000']
     },
 
     torii: {
@@ -36,11 +36,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.apiHost = 'http://localhost:3000';
   }
 
   if (environment === 'test') {

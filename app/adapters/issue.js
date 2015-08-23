@@ -1,37 +1,21 @@
-import DS from 'ember-data';
+import ApplicationAdapter from './application';
 
-export default DS.RESTAdapter.extend({
-  host: 'https://api.github.com',
-
+export default ApplicationAdapter.extend({
   urlForQuery (query, modelName) {
-    let session = this.container.lookup('simple-auth-session:main');
-    if(query.repoName && query.milestoneNumber){
-      return `${this.host}/repos/${session.get('secure.username')}/${query.repoName}/issues?milestone=${query.milestoneNumber}`;
-    } else if (query.repoName) {
-      return `${this.host}/repos/${session.get('secure.username')}/${query.repoName}/issues?state=all`;
+    if (query.milestone_id) {
+      let url = `${this.host}/${this.namespace}/milestones/${query.milestone_id}/issues`;
+      delete query.milestone_id;
+      return url;
+    } else if (query.repo_id) {
+      let url = `${this.host}/${this.namespace}/repos/${query.repo_id}/issues`;
+      delete query.repo_id;
+      return url;
     }
-  },
-
-  urlForUpdateRecord (id, modelName, snapshot) {
-    let session = this.container.lookup('simple-auth-session:main');
-    return `${this.host}/repos/${session.get('secure.username')}/${snapshot.get('repo.name')}/issues/${snapshot.get('number')}`;
+    return this._super(arguments);
   },
 
   urlForCreateRecord (modelName, snapshot) {
-    let session = this.container.lookup('simple-auth-session:main');
-    return `${this.host}/repos/${session.get('secure.username')}/${snapshot.get('repo.name')}/issues`;
-  },
-
-  updateRecord (store, type, snapshot) {
-    var data = {};
-    var serializer = store.serializerFor(type.modelName);
-
-    serializer.serializeIntoHash(data, type, snapshot);
-
-    var id = snapshot.id;
-    var url = this.buildURL(type.modelName, id, snapshot, 'updateRecord');
-
-    return this.ajax(url, "PATCH", { data: data });
+    return `${this.host}/${this.namespace}/milestones/${snapshot.get('milestone_id')}/issues`;
   }
 
 });

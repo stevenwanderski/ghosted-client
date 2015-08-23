@@ -1,7 +1,5 @@
-<div id="issues">
-{{#each issues as |issue|}}
-  <div class="issue">
-    <i class="fa fa-arrows handle"></i> {{issue.title}}
-  </div>
+<div class="issue-list">
+{{#each openIssues as |issue|}}
+  {{x-issue issue=issue}}
 {{/each}}
 </div>

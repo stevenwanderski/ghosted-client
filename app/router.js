@@ -7,12 +7,13 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('home', { path: '/' });
-  this.route('repos-list', { path: 'repos' });
-  this.route('repo-show', { path: 'repos/:name' }, function(){
+  this.route('repos-favorites', { path: 'repos/favorites' });
+  this.route('repos-all', { path: 'repos/all' });
+  this.route('repo-show', { path: 'repos/:id' }, function(){
     this.route('issues', { path: 'issues' });
     this.route('milestones', { path: 'milestones' });
     this.route('milestone-new', { path: 'milestones/new' });
-    this.route('milestone-show', { path: 'milestones/:number/' }, function(){
+    this.route('milestone-show', { path: 'milestones/:milestoneId' }, function(){
       this.route('milestone-issues', { path: 'issues' });
       this.route('issue-new', { path: 'issues/new' });
     });

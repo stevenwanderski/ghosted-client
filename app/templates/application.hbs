@@ -1,12 +1,19 @@
 <div class="container">
   <header>
     {{#if session.isAuthenticated}}
-      <img src={{session.secure.avatar_url}} class="avatar" /> <span class="username">{{session.secure.username}}</span>
-      {{#link-to 'repos-list'}}repos{{/link-to}}
+      {{#link-to 'repos-favorites'}}
+        <img src={{session.secure.avatar_url}} class="avatar" />
+      {{/link-to}}
+      <span class="username">{{session.secure.username}}</span>
       <a href="" {{ action 'invalidateSession' }}>logout</a>
     {{else}}
       <div class="title">Github Issues</div>
     {{/if}}
   </header>
+
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-message flash=flash}}
+  {{/each}}
+
   {{outlet}}
 </div>
