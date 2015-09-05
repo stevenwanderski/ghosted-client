@@ -5,12 +5,15 @@ export default Ember.Component.extend({
 
   actions: {
     saveIssue (issue) {
-      this.sendAction('submit', issue);
+      issue.save().then(() => {
+        this.sendAction('successfulSave', this.get('issue'));
+      }, function(errors){
+        console.error(errors);
+      });
     },
 
     cancel () {
       this.sendAction('cancel');
     }
   }
-
 });

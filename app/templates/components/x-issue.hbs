@@ -1,6 +1,5 @@
 <div class="issue" data-issue-id="{{issue.id}}">
   <i class="fa fa-arrows handle"></i>
-  <span class="issue-number">#{{issue.number}}</span>
-  {{issue.title}}
+  {{issue.title}} {{#link-to editRoute issue.id}}edit{{/link-to}}
   <a href="" class="issue-close pull-right" {{action 'close' issue}}><i class="fa fa-check-circle"></i></a>
 </div>

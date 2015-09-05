@@ -4,6 +4,7 @@ import ajax from 'ic-ajax';
 export default Ember.Component.extend({
   issues: null,
   saveWeights: null,
+  issueEditRoute: null,
 
   didInsertElement () {
     this.$('.issue-list').sortable({

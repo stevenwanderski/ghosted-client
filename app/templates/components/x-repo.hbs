@@ -1,6 +1,6 @@
 <div class="repo-card">
   <i {{action 'setFavorite'}} class="fa {{if repo.favorite 'fa-star' 'fa-star-o'}}"></i>
-  {{#link-to 'repo-show.issues' repo.id}}
+  {{#link-to 'repo-show.milestones' repo.id}}
     {{repo.name}}
   {{/link-to}}
 </div>

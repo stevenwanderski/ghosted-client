@@ -15,7 +15,10 @@ export default ApplicationAdapter.extend({
   },
 
   urlForCreateRecord (modelName, snapshot) {
-    return `${this.host}/${this.namespace}/milestones/${snapshot.get('milestone_id')}/issues`;
+    if(snapshot.get('milestone_id')){
+      return `${this.host}/${this.namespace}/milestones/${snapshot.get('milestone_id')}/issues`;
+    }
+    return `${this.host}/${this.namespace}/repos/${snapshot.get('repo_id')}/issues`;
   }
 
 });

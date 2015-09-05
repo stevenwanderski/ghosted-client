@@ -1,1 +1,6 @@
-{{issue-list issues=model saveWeights="saveWeights"}}
+<p>{{#link-to 'repo-show.issue-new'}}Create Issue{{/link-to}}</p>
+
+{{issue-list
+  issues=model
+  saveWeights="saveWeights"
+  issueEditRoute='repo-show.issue-update'}}

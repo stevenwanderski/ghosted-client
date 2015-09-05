@@ -1,0 +1,4 @@
+<p>{{#link-to 'repo-show.milestone-new'}}+ Create milestone{{/link-to}}</p>
+{{#each milestones as |milestone|}}
+  {{#link-to 'repo-show.milestone-show.milestone-issues' milestone.id class='issue'}}{{milestone.title}}{{/link-to}}
+{{/each}}

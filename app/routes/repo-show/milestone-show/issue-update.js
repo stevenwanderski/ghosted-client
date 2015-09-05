@@ -3,7 +3,7 @@ import ProtectedRoute from '../../protected';
 export default ProtectedRoute.extend({
   model(params) {
     let milestone = this.modelFor('repo-show.milestone-show')
-    return this.store.createRecord('issue', { milestone_id: milestone.get('id') });
+    return this.store.find('issue', params.issueId);
   },
 
   actions: {
