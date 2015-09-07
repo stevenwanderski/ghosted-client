@@ -19,15 +19,17 @@ module.exports = function(environment) {
     },
 
     'simple-auth': {
-      routeAfterAuthentication: 'repos-favorites',
+      routeAfterAuthentication: 'repos',
       authorizer: 'authorizer:github-issues-api',
-      crossOriginWhitelist: ['http://localhost:3000']
+      crossOriginWhitelist: [
+        'http://localhost:3000',
+        'http://api.ghosted.io'
+      ]
     },
 
     torii: {
       providers: {
         'github-oauth2': {
-          apiKey: 'e7efb6c8bc9dd05dcf70',
           redirectUrl: '/repos',
           scope: 'public_repo'
         }
@@ -37,6 +39,12 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.apiHost = 'http://localhost:3000';
+    ENV.torii.providers['github-oauth2'].apiKey = 'd634b43a1a758add0c4c';
+  }
+
+  if (environment === 'production') {
+    ENV.apiHost = 'http://api.ghosted.io';
+    ENV.torii.providers['github-oauth2'].apiKey = 'e7efb6c8bc9dd05dcf70';
   }
 
   if (environment === 'test') {
@@ -51,9 +59,6 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-
-  }
 
   return ENV;
 };

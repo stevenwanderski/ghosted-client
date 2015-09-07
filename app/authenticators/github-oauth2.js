@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Base from 'simple-auth/authenticators/base';
 import ajax from 'ic-ajax';
+import ENV from 'github-issues/config/environment';
 
 export default Base.extend({
   restore (data) {
@@ -22,7 +23,7 @@ export default Base.extend({
 
   fetchGithubAccessToken (authorization) {
     return ajax({
-      url: 'http://localhost:3000/v1/tokens',
+      url: `${ENV.apiHost}/v1/tokens`,
       type: 'POST',
       data: {
         code: authorization.authorizationCode

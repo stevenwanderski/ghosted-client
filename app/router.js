@@ -7,6 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('home', { path: '/' });
+  this.route('repos', { path: 'repos' });
   this.route('repos-favorites', { path: 'repos/favorites' });
   this.route('repos-all', { path: 'repos/all' });
   this.route('repo-show', { path: 'repos/:id' }, function(){
