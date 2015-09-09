@@ -1,4 +1,6 @@
 <form {{action 'saveIssue' issue on='submit'}}>
-  {{input value=issue.title placeholder='Title'}}
+  <div class="form-group">
+    {{input value=issue.title placeholder='Title' class="form-control"}}
+  </div>
   <button>Save Issue</button> <a href="" {{action 'cancel'}}>cancel</a>
 </form>

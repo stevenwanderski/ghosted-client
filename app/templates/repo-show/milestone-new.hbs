@@ -1,5 +1,7 @@
 <h5>New Milestone</h5>
 <form {{action 'saveMilestone' model on="submit"}}>
-  {{input value=model.title placeholder="Title"}}
+  <div class="form-group">
+    {{input value=model.title placeholder="Title" class="form-control"}}
+  </div>
   <button>Create Milestone</button> <a href="" {{action 'cancel'}}>cancel</a>
 </form>

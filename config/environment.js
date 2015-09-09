@@ -23,7 +23,7 @@ module.exports = function(environment) {
       authorizer: 'authorizer:github-issues-api',
       crossOriginWhitelist: [
         'http://localhost:3000',
-        'http://api.ghosted.io'
+        'https://api.ghosted.io'
       ]
     },
 
@@ -31,7 +31,7 @@ module.exports = function(environment) {
       providers: {
         'github-oauth2': {
           redirectUrl: '/repos',
-          scope: 'public_repo'
+          scope: 'repo'
         }
       }
     }
@@ -43,7 +43,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'http://api.ghosted.io';
+    ENV.apiHost = 'https://api.ghosted.io';
     ENV.torii.providers['github-oauth2'].apiKey = 'e7efb6c8bc9dd05dcf70';
   }
 
