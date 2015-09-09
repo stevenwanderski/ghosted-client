@@ -2,5 +2,5 @@
   <div class="form-group">
     {{input value=issue.title placeholder='Title' class="form-control"}}
   </div>
-  <button>Save Issue</button> <a href="" {{action 'cancel'}}>cancel</a>
+  <button disabled={{isSaving}}>Save Issue</button> <a href="" {{action 'cancel'}}>cancel</a>
 </form>
