@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('issue-new', { path: 'issues/new' });
     this.route('milestones', { path: 'milestones' });
     this.route('milestone-new', { path: 'milestones/new' });
+    this.route('milestone-update', { path: 'milestones/:milestoneId/update' });
     this.route('milestone-show', { path: 'milestones/:milestoneId' }, function(){
       this.route('milestone-issues', { path: 'issues' });
       this.route('issue-new', { path: 'issues/new' });

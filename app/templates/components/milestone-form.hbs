@@ -1,0 +1,6 @@
+<form {{action 'saveMilestone' on="submit"}}>
+  <div class="form-group">
+    {{input value=milestone.title placeholder="Title" class="form-control"}}
+  </div>
+  <button disabled={{isSaving}}>Save Milestone</button> <a href="" {{action 'cancel'}}>cancel</a>
+</form>
