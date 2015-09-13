@@ -8,6 +8,10 @@ body {
   max-width: 100%;
 }
 
+.app-container {
+  position: relative;
+}
+
 .issue {
   border: solid #eee 1px;
   padding: 10px;
@@ -73,4 +77,10 @@ header {
     vertical-align: middle;
     border: solid 5px #eee;
   }
+}
+
+.alert {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
